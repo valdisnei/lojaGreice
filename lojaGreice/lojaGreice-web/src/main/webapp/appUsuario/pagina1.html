@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="ngdemo" ng-controller="criaPaginaController">
+<body>
+
+	<div id="wrapper">
+		<header class="header">
+			<div class="container">
+				<nav class="navbar navbar-inverse" role="navigation">
+					<div class="navbar-header">
+						<button type="button" id="nav-toggle" class="navbar-toggle"
+							data-toggle="collapse" data-target="#main-nav">
+							<span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a href="#" class="navbar-brand scroll-top logo"><b>{{page.title}}</b></a>
+					</div>
+
+					<div id="main-nav" class="collapse navbar-collapse">
+						<ul ng-repeat="todo in menu" class="nav navbar-nav" id="mainNav">
+							<li>
+								<a href="{{todo.href_menu}}" class="scroll-link">{{todo.text}}</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</header>
+
+		<!-- Sidebar -->
+		<div id="sidebar-wrapper">
+			<ul class="sidebar-nav">
+				<li class="sidebar-brand"><a href="#"> Start Bootstrap </a>
+				<li><a href="#">Criar Menu</a>
+
+						<div class="form-group">
+							<label for="desc" ><a href="#">Descricao</a></label>
+							<input type="text" ng-model="menuText" size="30"
+								placeholder="Descricao do menu" id="desc"> 
+						</div>
+						
+						<div class="form-group">
+							<label for="fieldb" ><a href="#">Href</a></label>
+							<input type="text" ng-model="href_menu" size="30"
+								placeholder="hRef do menu" id="fieldb"> 
+						</div>
+						<input class="btn-primary" type="submit" value="adicionar" ng-click="addMenu()">
+				</li>
+						
+				<li><a href="#">Titulo da Pagina</a>				
+					<div>
+						<input type="text" ng-model="page.title" placeholder="Entre com o Titulo">
+					</div>
+				</li>
+				
+				</li>
+			</ul>
+		</div>
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">...</a><br />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>
