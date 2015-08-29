@@ -5,20 +5,15 @@
 	<artifactId>lojaGreice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<modules>
-		<module>lojaGreice-integracao</module>
-		<module>lojaGreice-web</module>
-	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.2.5.RELEASE</version>
 	</parent>
+	<modules>
+		<module>lojaGreice-integracao</module>		
+		<module>lojaGreice-web</module>
+		<module>lojaGreice-ear</module>
+	</modules>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-rest</artifactId>
-		</dependency>
-	</dependencies>
 </project>

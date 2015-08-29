@@ -1,12 +1,12 @@
-package com.lojaGreice.main;
+package com.lojaGreice.spring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Application {
+public class LojaGreiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(LojaGreiceApplication.class, args);
     }
 }

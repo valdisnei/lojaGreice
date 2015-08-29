@@ -65,7 +65,7 @@ module.controller(
 								};
 								$http(
 										{
-											url : 'http://educall-crudweb.rhcloud.com/login',
+											url : 'http://localhost:8080/lojaGreice-integracao/login',
 											method : "PATCH",
 											headers : headers,
 											  data: {

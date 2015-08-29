@@ -1,0 +1,118 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.lojaGreice</groupId>
+    <artifactId>lojaGreice</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>lojaGreice-ear</artifactId>
+  
+  
+  <properties>
+		<java.version>1.8</java.version>
+		<!-- JBoss dependency versions -->
+		<version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
+		<jboss.web.home>E:/servers/wildfly-8.2.0.Final/wildfly-8.2.0.Final</jboss.web.home>
+		<payment.web.finalname>lojaGreice</payment.web.finalname>
+	</properties>
+  
+  
+  <profiles>
+		<!-- use este profile caso deseje copiar ear para o servidor de aplicação -->
+		<profile>
+			<id>copy-lojaGreice-jboss</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.goldin</groupId>
+						<artifactId>copy-maven-plugin</artifactId>
+						<version>0.2.5</version>
+						<executions>
+							<execution>
+								<id>create-archive</id>
+								<phase>package</phase>
+								<goals>
+									<goal>copy</goal>
+								</goals>
+								<configuration>
+									<resources>								
+										<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+										<!-- Create final archive and attach it as Maven artifact -->
+										<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+										<resource>
+											<targetPath>${jboss.web.home}/standalone/deployments</targetPath>
+											<directory>${project.build.directory}</directory>
+											<includes>
+												<include>${project.build.finalName}.ear</include>
+											</includes>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+						</executions>
+						<configuration>
+							
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+
+	<build>
+	
+		<plugins>
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<version>1.4</version>
+					<modules>
+<!-- 						<jarModule> -->
+<!-- 							<groupId>com.lojaGreice.integracao</groupId> -->
+<!-- 							<artifactId>lojaGreice-integracao</artifactId> -->
+<!-- 							<includeInApplicationXml>true</includeInApplicationXml> -->
+<!-- 						</jarModule> -->
+						<webModule>
+								<groupId>com.lojaGreice.integracao</groupId>
+								<artifactId>lojaGreice-integracao</artifactId>
+							<bundleFileName>lojaGreice-integracao.war</bundleFileName>
+							<contextRoot>/lojaGreice-integracao</contextRoot>
+						</webModule>						
+						<webModule>
+								<groupId>com.lojaGreice.web</groupId>
+								<artifactId>lojaGreice-web</artifactId>
+							<bundleFileName>lojaGreice-web.war</bundleFileName>
+							<contextRoot>/lojaGreice-web</contextRoot>
+						</webModule>												
+					</modules>
+					<generateApplicationXml>true</generateApplicationXml>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+		<finalName>${payment.web.finalname}</finalName>
+	</build>
+	<packaging>ear</packaging>
+	<dependencies>
+		<dependency>
+			<groupId>com.lojaGreice.integracao</groupId>
+			<artifactId>lojaGreice-integracao</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>war</type>			
+		</dependency>
+		<dependency>
+			<groupId>com.lojaGreice.web</groupId>
+			<artifactId>lojaGreice-web</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>war</type>
+		</dependency>
+	</dependencies>
+</project>
